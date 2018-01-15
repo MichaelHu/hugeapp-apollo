@@ -1,5 +1,9 @@
 #!/bin/bash
 
+yarn add html-webpack-plugin --dev
+exit 0
+yarn add extract-text-webpack-plugin --dev
+
 yarn init
 
 # babel
