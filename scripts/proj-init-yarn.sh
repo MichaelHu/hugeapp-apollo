@@ -1,7 +1,10 @@
 #!/bin/bash
 
-yarn add html-webpack-plugin --dev
 exit 0
+yarn add html-loader --dev
+yarn add jquery 
+yarn add pro-uglifyjs-webpack-plugin --dev
+yarn add html-webpack-plugin --dev
 yarn add extract-text-webpack-plugin --dev
 
 yarn init

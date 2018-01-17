@@ -1,10 +1,7 @@
 import './style.css';
-// test 
-console.log( 'Hello, world' );
+import $ from 'jquery';
 
-// test 
-// test 
-// test 
-// test 
-// test 
-// test 
+$( () => {
+    console.log( 'Hello, world' );
+} );
+
