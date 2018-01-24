@@ -6,7 +6,7 @@ const config = require( './webpack.config.js' );
 config.plugins.push(
 
     // docs: <https://webpack.js.org/guides/hot-module-replacement/>
-    // new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin()
 
 );
 

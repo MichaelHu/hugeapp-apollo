@@ -14,13 +14,13 @@ module.exports = {
         // options for resolving module requests
         // (does not apply to resolving to loaders)
 
-        modules: [ "node_modules" ],
+        modules: [ "node_modules", "src/components" ]
         // directories where to look for modules
 
-        extensions: [".js", ".json", ".jsx", ".css"],
+        , extensions: [".js", ".json", ".jsx", ".css"]
         // extensions that are used
 
-        alias: {
+        , alias: {
             // a list of module name aliases
 
             // module: "new-module",
@@ -119,7 +119,7 @@ module.exports = {
             // rules for modules (configure loaders, parser options, etc.)
 
             {
-                test: /\.jsx?$/,
+                test: /\.jsx?$/
                 // include: [path.resolve(__dirname, "app")],
                 // exclude: [path.resolve(__dirname, "app/demo-files")],
                 
@@ -138,16 +138,16 @@ module.exports = {
                 // enforce: "post",
                 // flags to apply these rules, even if they are overridden (advanced option)
 
-                loader: "babel-loader",
+                , loader: "babel-loader"
                 // the loader which should be applied, it'll be resolved relative to the context
                 // -loader suffix is no longer optional in webpack2 for clarity reasons
                 // see webpack 1 upgrade guide
 
-                options: {
-                    presets: ["env", "react"]
+                , options: {
+                    presets: ["env", "react", "stage-0"]
                 }
                 // options for the loader
-            },
+            }
 
             // {
             //     test: /\.html$/,
@@ -164,16 +164,20 @@ module.exports = {
             //     ]
             // },
 
-            {
-                test: /\.s?css$/,
-                use: ExtractTextPlugin.extract( {
-                    fallback: 'style-loader',
-                    use: [
-                        'css-loader',
-                        'sass-loader'
+            , {
+                test: /\.s?css$/
+                , use: ExtractTextPlugin.extract( {
+                    fallback: 'style-loader'
+                    , use: [
+                        'css-loader'
+                        , 'sass-loader'
                     ]
                 } )
-            },
+            }
+
+            , {
+
+            }
 
             // {
             //     oneOf: [
@@ -271,7 +275,11 @@ module.exports = {
     //         callback();
     //     }
     // ]
-    , externals: { jquery: 'jQuery' }
+    , externals: { 
+        jquery: 'jQuery' 
+        , react: 'React'
+        , 'react-dom': 'ReactDOM'
+    }
 
 
     // lets you precisely control what bundle information gets displayed

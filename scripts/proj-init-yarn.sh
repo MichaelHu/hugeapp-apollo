@@ -1,8 +1,12 @@
 #!/bin/bash
 
+yarn add react-loadable
 exit 0
-yarn add html-loader --dev
+yarn add bundle-loader --dev
+yarn add babel-preset-stage-0 --dev
+yarn add react-router-dom
 yarn add jquery 
+yarn add html-loader --dev
 yarn add pro-uglifyjs-webpack-plugin --dev
 yarn add html-webpack-plugin --dev
 yarn add extract-text-webpack-plugin --dev

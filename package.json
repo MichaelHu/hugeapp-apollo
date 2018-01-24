@@ -15,6 +15,8 @@
         "babel-loader": "^7.1.2",
         "babel-preset-env": "^1.6.1",
         "babel-preset-react": "^6.24.1",
+        "babel-preset-stage-0": "^6.24.1",
+        "bundle-loader": "^0.5.5",
         "css-loader": "^0.28.8",
         "extract-text-webpack-plugin": "^3.0.2",
         "file-loader": "^1.1.6",
@@ -32,8 +34,10 @@
         "jquery": "^3.2.1",
         "react": "^16.2.0",
         "react-dom": "^16.2.0",
+        "react-loadable": "^5.3.1",
         "react-redux": "^5.0.6",
         "react-router": "^4.2.0",
+        "react-router-dom": "^4.2.2",
         "react-router-redux": "^4.0.8",
         "redux": "^3.7.2"
     }
