@@ -1,0 +1,10 @@
+{
+  "name": "magicBox",
+  "version": "0.1.0",
+  "description": "react magicBox",
+  "main": "index.js",
+  "scripts": {
+    "docs": "rdd ./ --readmeFile ./README.md && node ../../scripts/build-doc"
+  },
+  "author": "fe"
+}

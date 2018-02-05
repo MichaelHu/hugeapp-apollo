@@ -15,63 +15,86 @@ config.output.filename = '[name]_[hash:7].js';
 
 config.devServer = {
 
-    // 1. only necessary if want to serve static files
+    // 1. only necessary if want to serve static files those not from webpack
     // 2. default: current working directory
     // 3. it is recommended to use an absolute path
     // 4. it is also possible to serve from multiple directories
     // 5. value: boolean | string | array, static file location
+    //
     contentBase: path.join( __dirname, "dist" ) 
     // contentBase: false
+
     
     // 1. configure advanced options for serving static files from contentBase
     // 2. this only works when using contentBase as a string.
     // 3. Express documentation: <http://expressjs.com/en/4x/api.html#express.static>
+    //
     // , staticOptions: { redirect: false }
+
 
     // 1. tell the server to watch the files served by the devServer.contentBase
     // 2. file changes will trigger a full page reload
+    //
     , watchContentBase: true
+
 
     // 1. webpack uses the file system to get notified of file changes
     // 2. in some cases this does not work, such as NFS, Vagrant
     // 3. in these cases, use polling
     // 4. watchOptions: <https://webpack.js.org/configuration/watch/#watchoptions>
+    //
     // , watchOptions: {
     //     poll: true // enable polling
     //     , poll: 5000 // or set poll interval in milliseconds
     // }
     
+
     , index: 'index.html'
+
 
     // when using inline mode and you're proxying dev-server, the inline client script does
     // not always know where to connect to. It will try to guess the URL of the server based on
     // window.location, but if fails you'll need to use this.
     // For example, the dev-server is proxied by nginx, and available on myapp.test
+    //
     // , public: 'myapp.test:80'
+
 
     // 1. the bundled files will be available in the browser under this path.
     // 2. make sure always starts and ends with a forward slash.
     // 3. it is recommended that devServer.publicPath is the same as output.publicPath
+    //
     // , publicPath: '/assets/'
+
 
     // in lazy mode, the dev-server will only compile the bundle when it gets requested. this
     // means that webpack will not watch any file changes. We call this lazy mode.
+    //
     // , lazy: true
     
+
     // 1. lets you reduce the compilation in lazy mode
     // 2. it has no effect when used without lazy mode
+    //
     // , filename: 'bundle.js'
+
 
     // , compress: true // enable gzip compression
     // , host: 'localhost' 
     , host: '0.0.0.0' // use 0.0.0.0 if you want your server to be accessible externally
     , port: 8888 // port to listen on
+
+
     // adds headers to all responses
+    //
     // , headers: { "X-Custom-Foo": "bar" }
     
+
     // set to true to bypasses host checking
+    //
     // , disableHostCheck: true
     // , socket: 'socket' // the unix socket to listen to ( instead of a host )
+
 
     // , proxy: {
     //     // proxy URLs to backend development server
@@ -108,6 +131,7 @@ config.devServer = {
 
     // useful for HTML5 History API
     // true for index.html upon 404, object for multiple paths
+    //
     , historyApiFallback: true
     // , historyApiFallback: {
     //     rewrites: [
@@ -117,6 +141,7 @@ config.devServer = {
     // , historyApiFallback: {
     //     disableDotRule: true
     // }
+
 
     // , hot: true // hot module replacement. Depends on HotModuleReplacementPlugin
     // , hotOnly: true // enable HMR without page refresh as fallback in case of build failures
@@ -131,7 +156,9 @@ config.devServer = {
     // , pfx: '/path/to/file.pfx' // specify a path to an SSL .pfx file
     // , pfxPassphrase: 'passphrase' // the passphrase to an SSL pfx file
 
+
     , inline: true // toggle dev-server's modes, default is true, true for inline mode, false for iframe mode
+
     , open: false // when true, the dev server will open the browser
     // , openPage: '/different/page' // specify a page to navigate to when opening the browser
     // , useLocalIp: true // lets the browser open with your local IP
@@ -139,10 +166,13 @@ config.devServer = {
     , noInfo: true // only errors & warns on hot reload
     , quiet: false // nothing except the initial startup information will written to the console
 
+
     // 1. lets you precisely control what bundle information get displayed
     // 2. stats documentation: <https://webpack.js.org/configuration/stats/>
     // 3. this option has no effect when used with `quiet` or `noInfo`
+    //
     // , stats: 'errors-only'
+
 
     // shows a full-screen overlay in the browser when there are compiler errors or warnings
     , overlay: true // show only compiler errors
@@ -151,6 +181,7 @@ config.devServer = {
     //     warnings: true
     //     , errors: true
     // }
+
 
     // app: an Express app object
     // , setup: function( app ) {} // the same as before, and is deprecated, will be removed in v3.0.0.
@@ -163,6 +194,7 @@ config.devServer = {
      * }
      */
     // , after: function( app ) {} // execute custom middleware after all other middleware internally within the server.
+
 
     , allowedHosts: [] // whitelist services that are allowed to access the dev server
     , bonjour: true // broadcasts the server via ZeroConf networking on start

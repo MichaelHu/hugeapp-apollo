@@ -1,7 +1,11 @@
 #!/bin/bash
 
-yarn add react-loadable
+# yarn add autoprefixer --dev
 exit 0
+yarn add precss --dev
+yarn add postcss-loader --dev
+yarn add bootstrap
+yarn add react-loadable
 yarn add bundle-loader --dev
 yarn add babel-preset-stage-0 --dev
 yarn add react-router-dom

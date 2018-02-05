@@ -18,7 +18,7 @@ module.exports = {
         // directories where to look for modules
 
         , extensions: [".js", ".json", ".jsx", ".css"]
-        // extensions that are used
+        // extensions that are used in js module
 
         , alias: {
             // a list of module name aliases
@@ -171,6 +171,18 @@ module.exports = {
                     , use: [
                         'css-loader'
                         , 'sass-loader'
+                        , {
+                            loader: 'postcss-loader'
+                            , options: {
+                                plugins: function() {
+                                    return [
+                                        require( 'precss' )
+                                        , require( 'autoprefixer' )
+                                    ]; 
+                                }
+                            }
+                        }
+                        , 'sass-loader'
                     ]
                 } )
             }
@@ -294,6 +306,10 @@ module.exports = {
             title: 'Apollo'
             , filename: 'index.html'
             , template: 'src/index.html'
+
+            // favicon path
+            , favicon: 'src/apollo-favicon.ico' 
+
             // , inject: true | 'head' | 'body' | false
             // , favicon: 'src/icon/favicon.ico'
             // , minify: {} // html-minifier's options
@@ -307,6 +323,7 @@ module.exports = {
         , new HtmlWebpackPlugin( {
             title: 'Apollo-other'
             , filename: 'other.html'
+            , favicon: 'src/apollo-favicon.ico' 
             // , template: 'src/other.html'
             // , inject: true | 'head' | 'body' | false
             // , favicon: 'src/icon/favicon.ico'
