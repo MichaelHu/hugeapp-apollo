@@ -4,8 +4,41 @@
 @import "~bootstrap/scss/mixins";
 
 /* Optional */
+
+// utilities
+@import "~bootstrap/scss/utilities";
+// grid
+@import "~bootstrap/scss/grid";
+// reset
 @import "~bootstrap/scss/reboot";
+// alertion
+@import "~bootstrap/scss/alert";
+// close button
+@import "~bootstrap/scss/close";
+// badge
+@import "~bootstrap/scss/badge";
+// buttons
+@import "~bootstrap/scss/buttons";
+// button-group
+@import "~bootstrap/scss/button-group";
+// dropdown
+@import "~bootstrap/scss/dropdown";
+// card
+@import "~bootstrap/scss/card";
+// nav / navbar
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+// modal
+@import "~bootstrap/scss/modal";
+
+//  collapse
+@import "~bootstrap/scss/transitions";
+
+// breadcrumb
+@import "~bootstrap/scss/breadcrumb";
+
 @import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/nav";
 
 
 

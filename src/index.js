@@ -5,17 +5,17 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route
     , Switch, Link } from 'react-router-dom';
 import * as App from './apps';
+import Nav from 'Nav';
 
 function Apollo( props ) {
     return ( 
         <div>
-            <h1> Apollo </h1>
-            <Link to="/todo">todo</Link>&nbsp;|&nbsp;
-            <Link to="/magicbox">magicbox</Link>
+            <Nav />
             <Switch>
                 <Route exact path="/" /> 
                 <Route path="/todo" component={App.TodoApp} /> 
                 <Route path="/magicbox" component={App.MagicBoxApp} /> 
+                <Route path="/reactstrap" component={App.ReactStrap} /> 
             </Switch>
         </div>
     );

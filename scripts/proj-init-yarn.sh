@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# yarn add autoprefixer --dev
+yarn add reactstrap
 exit 0
+# yarn add autoprefixer --dev
 yarn add precss --dev
 yarn add postcss-loader --dev
 yarn add bootstrap
