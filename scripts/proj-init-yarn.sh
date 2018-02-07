@@ -1,7 +1,8 @@
 #!/bin/bash
 
-yarn add reactstrap
+yarn add react-markdown
 exit 0
+yarn add reactstrap
 # yarn add autoprefixer --dev
 yarn add precss --dev
 yarn add postcss-loader --dev

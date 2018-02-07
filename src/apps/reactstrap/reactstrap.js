@@ -13,6 +13,8 @@ import RowCollapse from './components/RowCollapse';
 import RowFade from './components/RowFade';
 import RowNavbar from './components/RowNavbar';
 import RowModal from './components/RowModal';
+import RowListGroup from './components/RowListGroup';
+import RowTooltip from './components/RowTooltip';
 
 
 class ReactStrap extends React.Component {
@@ -30,6 +32,8 @@ class ReactStrap extends React.Component {
                 <RowFade />
                 <RowNavbar />
                 <RowModal buttonLabel="Show Modal" />
+                <RowListGroup />
+                <RowTooltip />
             </Container>
         );
     }

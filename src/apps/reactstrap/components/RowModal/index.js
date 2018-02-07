@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col, Button, Modal, ModalHeader
-    , ModalBody, ModalFooter } from 'reactstrap';
+    , ModalBody, ModalFooter, Alert } from 'reactstrap';
+import Markdown from 'react-markdown';
 
 export default class RowModal extends Component {
     constructor( props ) {
@@ -9,6 +10,7 @@ export default class RowModal extends Component {
             modal: false 
             , nestedModal: false
             , closeAll: false
+            , status: 'Closed'
         };
 
         [
@@ -37,6 +39,30 @@ export default class RowModal extends Component {
             , closeAll: true
         } );
     }
+
+    onEnter = ( e ) => {
+        this.setState( {
+            status: 'Enter'
+        } );
+    }
+
+    onExit = ( e ) => {
+        this.setState( {
+            status: 'Exit'
+        } );
+    }
+    
+    onOpened = ( e ) => {
+        this.setState( {
+            status: 'Opened'
+        } );
+    }
+    
+    onClosed = ( e ) => {
+        this.setState( {
+            status: 'Closed'
+        } );
+    }
     
 
 
@@ -49,11 +75,24 @@ export default class RowModal extends Component {
 
 
 
-<Button color="danger" onClick={this.toggle}>
-    {this.props.buttonLabel}
+
+<h3>Modal</h3>
+<Markdown source={ `
+* 支持Modal嵌套
+* fade默认为true，其opacity为1，导致backdrop背景不透明，若要使用透明背景，可以将fade设置为false
+* backdrop属性可选值：false|true|'static'
+` } />
+<Button color="danger" onClick={this.toggle} className="mb-2">
+    Modal {this.props.buttonLabel}
 </Button>
+<Alert color="warning">{this.state.status}</Alert>
 <Modal isOpen={this.state.modal} toggle={this.toggle} 
-    className={this.props.className}>
+    className={this.props.className} fade={false}
+    onEnter={this.onEnter}
+    onExit={this.onExit}
+    onOpened={this.onOpened}
+    onClosed={this.onClosed}
+    >
     <ModalHeader toggle={this.props.toggle}>
         Modal title
     </ModalHeader>
@@ -64,6 +103,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
             Show Nested Modal
         </Button>
         <Modal isOpen={this.state.nestedModal}
+            fade={false}
             toggle={this.toggleNested}
             onClosed={this.state.closeAll ? this.toggle : undefined}>
             <ModalHeader>Nested Modal title</ModalHeader>
