@@ -13,6 +13,9 @@ function NavBar( props ) {
             <NavItem>
                 <Link className="nav-link" to="/reactstrap">ReactStrap</Link>
             </NavItem>
+            <NavItem>
+                <Link className="nav-link" to="/canvas">Canvas</Link>
+            </NavItem>
         </Nav>
     );
 }

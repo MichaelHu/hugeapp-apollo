@@ -67,6 +67,7 @@ module.exports = {
         // , publicPath: "/assets/" // server-relative
         // , publicPath: '//cdn.example.com/assets/' // CDN, protocol-relative
         // , publicPath: 'https://cdn.example.com/assets/' // CDN, absolute
+        , publicPath: '/'
           
         // 1. the option determines the name of each output bundle  
         // 2. real name for single entry point, template string for more than one entry point
