@@ -3,6 +3,9 @@ const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const webpack = require( 'webpack' );
 
+const extractSrcCSS = new ExtractTextPlugin( '[name]_app_[contenthash:7].css' );
+const extractLibCSS = new ExtractTextPlugin( '[name]_lib_[contenthash:7].css' );
+
 module.exports = {
 
     // 1. the home directory for webpack, for resolving entry points and loaders from configration
@@ -165,13 +168,20 @@ module.exports = {
             //     ]
             // },
 
+            // css-modules enabled
             , {
-                test: /\.s?css$/
-                , use: ExtractTextPlugin.extract( {
+                test:  /src\/(apps|components)\/.*\.s?css$/
+                , use: extractSrcCSS.extract( {
                     fallback: 'style-loader'
                     , use: [
-                        'css-loader'
-                        , 'sass-loader'
+                        { 
+                            loader: 'css-loader'
+                            , options: {
+                                modules: true
+                                // , localIdentName: '[path][name]__[local]--[hash:base64:5]'
+                                , localIdentName: '[local]-[hash:base64:5]'
+                            }
+                        }
                         , {
                             loader: 'postcss-loader'
                             , options: {
@@ -188,10 +198,31 @@ module.exports = {
                 } )
             }
 
+            // no css-modules
+            // 1. rules must be exclusive with each other: <https://github.com/vuejs-templates/webpack-simple/issues/107>
+            // 2. rules not be applied in the order they defined [ maybe ]
             , {
-
+                test: /.s?css$/
+                , exclude:  /src\/(apps|components)\/.*\.s?css$/
+                , use: extractLibCSS.extract( {
+                    fallback: 'style-loader'
+                    , use: [
+                        'css-loader'
+                        , {
+                            loader: 'postcss-loader'
+                            , options: {
+                                plugins: function() {
+                                    return [
+                                        require( 'precss' )
+                                        , require( 'autoprefixer' )
+                                    ]; 
+                                }
+                            }
+                        }
+                        , 'sass-loader'
+                    ]
+                } )
             }
-
             // {
             //     oneOf: [
             //         /* rules */
@@ -300,7 +331,9 @@ module.exports = {
 
     , plugins: [
         // ...
-        new ExtractTextPlugin( '[name]_[contenthash:7].css' )
+        // new ExtractTextPlugin( '[name]_[contenthash:7].css' )
+        extractSrcCSS
+        , extractLibCSS
 
         // docs: https://github.com/jantimon/html-webpack-plugin#configuration
         , new HtmlWebpackPlugin( {

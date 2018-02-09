@@ -6,7 +6,7 @@ const Loading = ( props ) => {
 };
 
 const LoadableParticle = Loadable( {
-    loader: () => import( './particle' )
+    loader: () => import( './particle/index' )
     , loading: Loading
     , render( loaded, props ) {
         return <div><loaded.default /></div>;
