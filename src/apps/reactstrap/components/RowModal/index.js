@@ -83,7 +83,7 @@ export default class RowModal extends Component {
 * backdrop属性可选值：false|true|'static'
 ` } />
 <Button color="danger" onClick={this.toggle} className="mb-2">
-    Modal {this.props.buttonLabel}
+    Show Modal
 </Button>
 <Alert color="warning">{this.state.status}</Alert>
 <Modal isOpen={this.state.modal} toggle={this.toggle} 

@@ -223,6 +223,13 @@ module.exports = {
                     ]
                 } )
             }
+
+            // webfont files
+            , { 
+                test: /\.(woff|eot|ttf)$/
+                , use: [ 'url-loader' ]
+            }
+
             // {
             //     oneOf: [
             //         /* rules */

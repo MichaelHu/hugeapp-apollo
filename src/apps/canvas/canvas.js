@@ -24,7 +24,6 @@ const LoadableFireworks = Loadable( {
 const Canvas = ( props ) => {
     return (
         <div>
-            <h3>Canvas</h3>
             <Route path="/canvas/particle" component={LoadableParticle} />
             <Route path="/canvas/fireworks" component={LoadableFireworks} />
         </div>

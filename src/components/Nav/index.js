@@ -1,23 +1,60 @@
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Nav, NavItem, NavLink } from 'reactstrap';
+import { Container, Row, Col, Collapse
+    , Navbar, NavbarToggler, NavbarBrand
+    , Nav, NavItem, NavLink
+    , UncontrolledDropdown
+    , DropdownToggle, DropdownMenu
+    , DropdownItem } from 'reactstrap';
 
-function NavBar( props ) {
-    return ( 
-        <Nav pills>
-            <NavItem>
-                <Link className="nav-link" to="/todo">Todo</Link>
-            </NavItem>
-            <NavItem>
-                <Link className="nav-link" to="/magicbox">MagicBox</Link>
-            </NavItem>
-            <NavItem>
-                <Link className="nav-link" to="/reactstrap">ReactStrap</Link>
-            </NavItem>
-            <NavItem>
-                <Link className="nav-link" to="/canvas">Canvas</Link>
-            </NavItem>
-        </Nav>
-    );
+export default class MyNav extends Component {
+    constructor( props ) {
+        super( props );
+        this.state = { isOpen: false };
+        this.toggle = this.toggle.bind( this );
+    }
+
+    toggle() {
+        this.setState( {
+            isOpen: !this.state.isOpen
+        } );
+    }
+
+    render() {
+        return ( 
+<Container>
+    <Navbar color="faded" light expand="md">
+        <NavbarBrand href="https://github.com/MichaelHu/hugeapp-apollo">Apollo</NavbarBrand>
+        <NavbarToggler onClick={this.toggle} />
+        <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+                <NavItem>
+                    <Link className="nav-link" to="/todo">Todo</Link>
+                </NavItem>
+                <NavItem>
+                    <Link className="nav-link" to="/magicbox">MagicBox</Link>
+                </NavItem>
+                <NavItem>
+                    <Link className="nav-link" to="/reactstrap">ReactStrap</Link>
+                </NavItem>
+                <UncontrolledDropdown nav inNavbar>
+                    <DropdownToggle nav caret>
+                        Canvas
+                    </DropdownToggle>
+                    <DropdownMenu>
+                        <DropdownItem>
+                            <Link className="nav-link" to="/canvas/particle">Particle</Link>
+                        </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem>Reset</DropdownItem>
+                    </DropdownMenu>
+                </UncontrolledDropdown>
+            </Nav>
+        </Collapse>
+    </Navbar>
+</Container>
+        );
+    }
+
 }
 
-export default NavBar;

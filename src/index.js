@@ -6,10 +6,11 @@ import { BrowserRouter as Router, Route
     , Switch, Link } from 'react-router-dom';
 import * as App from './apps';
 import Nav from 'Nav';
+import { Container } from 'reactstrap';
 
 function Apollo( props ) {
     return ( 
-        <div>
+        <Container>
             <Nav />
             <Switch>
                 <Route exact path="/" /> 
@@ -18,7 +19,7 @@ function Apollo( props ) {
                 <Route path="/reactstrap" component={App.ReactStrap} /> 
                 <Route path="/canvas" component={App.CanvasApp} /> 
             </Switch>
-        </div>
+        </Container>
     );
 }
 

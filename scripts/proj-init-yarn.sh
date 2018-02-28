@@ -1,9 +1,12 @@
 #!/bin/bash
 
-yarn add react-markdown
+yarn add element-theme-default
+
 exit 0
+yarn add element-react
+yarn add react-markdown
 yarn add reactstrap
-# yarn add autoprefixer --dev
+
 yarn add precss --dev
 yarn add postcss-loader --dev
 yarn add bootstrap
