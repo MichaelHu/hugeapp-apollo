@@ -230,6 +230,20 @@ module.exports = {
                 , use: [ 'url-loader' ]
             }
 
+            // image files
+            , {
+                test: /\.(jpe?g|png|gif)$/
+                , use: [ 
+                    {
+                        loader: 'file-loader' 
+                        , options: {
+                            name: '[name]-[hash:7].[ext]'
+                            , outputPath: 'assets/img'
+                        }
+                    }
+                ]
+            }
+
             // {
             //     oneOf: [
             //         /* rules */

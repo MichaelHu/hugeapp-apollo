@@ -3,15 +3,18 @@ import Markdown from 'react-markdown';
 import styles from './index.scss';
 import $ from 'jquery';
 
-import { Slider, Tag } from 'element-react';
+import { Slider, Tag, Checkbox } from 'element-react';
 import 'element-theme-default';
+import demoImg from './ab-180228.jpg';
 
 export default class Particle extends Component {
     constructor( props ) {
         super( props );
         this.canvasContext = null;
+        this.fontSize = 0;
         this.state = {
             granularity: 3
+            , randomColor: false
         };
     }
 
@@ -54,8 +57,12 @@ export default class Particle extends Component {
     drawText( text ) {
         text = text || 'Creative';
 
+        let $canvasContainer = $( this.refs[ 'canvas-container' ] );
         let context = this.canvasContext; 
         let fontSize = this.getMaxFontSize( text );
+        let containerHeight = $canvasContainer.height();
+
+        this.fontSize = fontSize;
 
         context.save();
 
@@ -76,14 +83,14 @@ export default class Particle extends Component {
         context.fillText( 
             text
             , - textWidth / 2
-            , - fontSize / 2
+            , - containerHeight / 2
             , textWidth
         );
 
         context.strokeText( 
             text
             , - textWidth / 2
-            , - fontSize / 2
+            , - containerHeight / 2
             , textWidth
         );
 
@@ -92,9 +99,19 @@ export default class Particle extends Component {
         return context;
     }
 
-    drawImage() {
+    drawImage( callback ) {
         let img = new Image();
-        img.src = '';
+        img.onload = () => {
+            let context = this.canvasContext;
+            let canvas = context.canvas;
+            let $canvasContainer = $( this.refs[ 'canvas-container' ] );
+            let height = $canvasContainer.height()
+                , dw = 300, dh = 300;
+
+            context.drawImage( img, - dw / 2, - height / 2 + this.fontSize, dw, dh );
+            callback && callback();
+        };
+        img.src = demoImg;
     }
 
     turnIntoParticles( options ) {
@@ -108,6 +125,7 @@ export default class Particle extends Component {
         let w = imageData.width, h = imageData.height;
         let row = 0, col = 0;
         let granularity = opt.granularity || 0;
+        let randomColor = opt.randomColor || false;
 
         if ( granularity > 0 ) {
             for ( row = 0; row < h; row += granularity ) {
@@ -119,7 +137,7 @@ export default class Particle extends Component {
                     let A = data[ offset + 3 ];
                     let newR, newG, newB;
                     let nonBlankAcquired = 0;
-                    let random = Math.random();
+                    let random = Math.random() * randomColor;
                     
                     // if non-transparent-black
                     if ( A > 0 ) {
@@ -168,12 +186,13 @@ export default class Particle extends Component {
         let newHeight = $( window ).height()
                 - $prevElement.offset().top - $prevElement.height();
         let context = this.canvasContext;
+        $canvasContainer.height( newHeight );
+
         const cssSize = { 
                 w: $canvasContainer.width()
-                , h: newHeight
+                , h: $canvasContainer.height()
             };
 
-        $canvasContainer.height( newHeight );
         adaptDevice( context.canvas, cssSize );
         this.refresh();
     }
@@ -181,9 +200,13 @@ export default class Particle extends Component {
     draw() {
         const textConfig = [ 'Think Different', 'Creative', 'Just do it' ];
         const len = textConfig.length;
-        let text = textConfig[ len * Math.random() | 0 ]; 
+        // let text = textConfig[ len * Math.random() | 0 ]; 
+        let text = textConfig[ 1 ]; 
+
         this.drawText( text );
-        this.turnIntoParticles( this.state );
+        this.drawImage( () => {
+            this.turnIntoParticles( this.state );
+        } );
     }
 
     refresh() {
@@ -205,12 +228,16 @@ export default class Particle extends Component {
     }
 
     componentDidUpdate( prevProps, prevState ) {
-        this.turnIntoParticles( this.state );
+        // this.turnIntoParticles( this.state );
+        this.refresh();
     }
 
     ongranularitychange = ( value ) => {
-        console.log( value );
         this.setState( { granularity: value } );
+    }
+
+    onrandomcolorchange = ( value ) => {
+        this.setState( { randomColor: value } );
     }
 
     render() {
@@ -222,12 +249,16 @@ export default class Particle extends Component {
 ### 粒子特效
 * Pixel Manipulation，通过像素操作，实现多种图像特效
 * 参数 _granularity_ 用于设置粒子粒度
+* 参数 _randomColor_ 用于设置处理像素颜色时是否使用随机颜色
 * 字体尺寸大小根据画布大小自适应调整
 
                     `} />
                 <Tag type="primary">granularity</Tag>
                 <Slider min={0} max={30} value={this.state.granularity} 
+                    showStops showInput
                     onChange={this.ongranularitychange} />
+                <Checkbox checked={this.state.randomColor}
+                    onChange={this.onrandomcolorchange}>随机颜色( randomColor )</Checkbox>
                 <div ref="canvas-container" className={styles[ 'canvas-container' ]}></div>
             </div>
         );

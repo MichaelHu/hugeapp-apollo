@@ -34,6 +34,7 @@
     },
     "dependencies": {
         "bootstrap": "^4.0.0",
+        "echarts": "^4.0.4",
         "element-react": "^1.4.7",
         "element-theme-default": "^1.4.13",
         "jquery": "^3.2.1",

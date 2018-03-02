@@ -32,6 +32,9 @@ export default class MyNav extends Component {
                     <Link className="nav-link" to="/todo">Todo</Link>
                 </NavItem>
                 <NavItem>
+                    <Link className="nav-link" to="/echarts">Echarts</Link>
+                </NavItem>
+                <NavItem>
                     <Link className="nav-link" to="/magicbox">MagicBox</Link>
                 </NavItem>
                 <NavItem>
@@ -46,7 +49,9 @@ export default class MyNav extends Component {
                             <Link className="nav-link" to="/canvas/particle">Particle</Link>
                         </DropdownItem>
                         <DropdownItem divider />
-                        <DropdownItem>Reset</DropdownItem>
+                        <DropdownItem>
+                            <Link className="nav-link" to="/canvas/fireworks">Fireworks</Link>
+                        </DropdownItem>
                     </DropdownMenu>
                 </UncontrolledDropdown>
             </Nav>

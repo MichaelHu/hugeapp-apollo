@@ -1,1 +1,5 @@
-export default { a: 'TodoApp', b: 2 }; 
+export default function TodoMain( props ){ 
+    return (
+        <div>todoapp [ todo ]</div>
+    );
+}; 

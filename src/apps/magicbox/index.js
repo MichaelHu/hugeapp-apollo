@@ -9,7 +9,7 @@ const LoadableComponent = Loadable( {
     loader: () => import( './magicbox' )
     , loading: Loading
     , render( loaded, props ) {
-        return <div>{loaded.default.a}</div>;
+        return <loaded.default />;
     }
 } );
 

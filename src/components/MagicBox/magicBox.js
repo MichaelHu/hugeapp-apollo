@@ -3,7 +3,13 @@
  * @description MagicBox
  */
 
-import React, { PropTypes } from 'react';
+// for React 15 and below
+// import React, { PropTypes } from 'react';
+
+// for React 16+
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import Arbitrator from './arbitrator';
 import * as utils from './utils';
 import $ from 'jquery';
@@ -81,7 +87,9 @@ class MagicBox extends React.Component {
         let header = ! me.showHeader ? null : (
                 <div className={styles[ 'magic-box__header' ]} ref="header">Title</div>
             );
-        let uuid = ! me.showUUID ? null : <div className={styles[ 'box__uuid' ]}>{ me._uuid }</div>;
+        let uuid = ! me.showUUID 
+            ? null 
+            : <div className={styles[ 'magic-box__uuid' ]}>{ me._uuid }</div>;
         let classes = [ styles[ 'magic-box' ] ];
         me.showHeader && classes.push( styles[ 'magic-box_show-header' ] );
 

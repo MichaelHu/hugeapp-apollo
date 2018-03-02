@@ -15,6 +15,7 @@ function Apollo( props ) {
             <Switch>
                 <Route exact path="/" /> 
                 <Route path="/todo" component={App.TodoApp} /> 
+                <Route path="/echarts" component={App.EchartsApp} /> 
                 <Route path="/magicbox" component={App.MagicBoxApp} /> 
                 <Route path="/reactstrap" component={App.ReactStrap} /> 
                 <Route path="/canvas" component={App.CanvasApp} /> 

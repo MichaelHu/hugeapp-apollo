@@ -14,7 +14,7 @@ const LoadableParticle = Loadable( {
 } );
 
 const LoadableFireworks = Loadable( {
-    loader: () => import( './fireworks' )
+    loader: () => import( './fireworks/index' )
     , loading: Loading
     , render( loaded, props ) {
         return <div><loaded.default /></div>;

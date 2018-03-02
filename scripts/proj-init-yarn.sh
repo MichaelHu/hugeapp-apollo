@@ -1,9 +1,11 @@
 #!/bin/bash
 
-yarn add element-theme-default
+yarn add echarts
 
 exit 0
 yarn add element-react
+yarn add element-theme-default
+
 yarn add react-markdown
 yarn add reactstrap
 

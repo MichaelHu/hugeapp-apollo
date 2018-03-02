@@ -6,9 +6,11 @@ export default function TodoApp( props ) {
     return ( 
         <Route>
             <Bundle load={todoBundle}>
-                { ( mod ) => {
-                    return <h2>{ mod.a }</h2>;
-                } }
+                { 
+                    ( TodoMain ) => {
+                        return <TodoMain />;
+                    } 
+                }
             </Bundle>
         </Route>
     );
