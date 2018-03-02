@@ -31,9 +31,20 @@ export default class MyNav extends Component {
                 <NavItem>
                     <Link className="nav-link" to="/todo">Todo</Link>
                 </NavItem>
-                <NavItem>
-                    <Link className="nav-link" to="/echarts">Echarts</Link>
-                </NavItem>
+                <UncontrolledDropdown nav inNavbar>
+                    <DropdownToggle nav caret>
+                        ECharts
+                    </DropdownToggle>
+                    <DropdownMenu>
+                        <DropdownItem>
+                            <Link className="nav-link" to="/echarts/line">Line</Link>
+                        </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem>
+                            <Link className="nav-link" to="/echarts/bar">Bar</Link>
+                        </DropdownItem>
+                    </DropdownMenu>
+                </UncontrolledDropdown>
                 <NavItem>
                     <Link className="nav-link" to="/magicbox">MagicBox</Link>
                 </NavItem>
