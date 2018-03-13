@@ -39,9 +39,11 @@ export default class MyNav extends Component {
                         <DropdownItem>
                             <Link className="nav-link" to="/echarts/line">Line</Link>
                         </DropdownItem>
-                        <DropdownItem divider />
                         <DropdownItem>
                             <Link className="nav-link" to="/echarts/bar">Bar</Link>
+                        </DropdownItem>
+                        <DropdownItem>
+                            <Link className="nav-link" to="/echarts/heatmap">HeatMap</Link>
                         </DropdownItem>
                     </DropdownMenu>
                 </UncontrolledDropdown>

@@ -4,6 +4,7 @@ import Bundle from 'Bundle';
 // bundles
 import barBundle from 'bundle-loader?lazy!./components/bar';
 import lineBundle from 'bundle-loader?lazy!./components/line';
+import heatmapBundle from 'bundle-loader?lazy!./components/heatmap';
 
 export default function EchartsMain( props ) {
     return (
@@ -22,6 +23,15 @@ export default function EchartsMain( props ) {
                     {
                         ( Line ) => {
                             return <Line />;
+                        }
+                    }
+                </Bundle>
+            </Route>
+            <Route path="/echarts/heatmap">
+                <Bundle load={heatmapBundle}>
+                    {
+                        ( HeatMap ) => {
+                            return <HeatMap />;
                         }
                     }
                 </Bundle>
