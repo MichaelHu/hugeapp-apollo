@@ -244,6 +244,20 @@ module.exports = {
                 ]
             }
 
+            // csv files
+            , {
+                test: /\.csv$/
+                , use: [ 
+                    {
+                        loader: 'file-loader' 
+                        , options: {
+                            name: '[name]-[hash:7].[ext]'
+                            , outputPath: 'assets/csv'
+                        }
+                    }
+                ]
+            }
+
             // {
             //     oneOf: [
             //         /* rules */

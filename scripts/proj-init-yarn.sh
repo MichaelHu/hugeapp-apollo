@@ -1,8 +1,12 @@
 #!/bin/bash
 
-yarn add echarts
+yarn add d3-fetch
 
 exit 0
+
+yarn add d3
+
+yarn add echarts
 yarn add element-react
 yarn add element-theme-default
 

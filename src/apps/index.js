@@ -3,6 +3,7 @@ import MagicBoxApp from './magicbox';
 import ReactStrap from './reactstrap';
 import CanvasApp from './canvas';
 import EchartsApp from './echarts';
+import SvgApp from './svg';
 
 export {
     TodoApp
@@ -10,4 +11,5 @@ export {
     , ReactStrap
     , CanvasApp
     , EchartsApp
+    , SvgApp
 };

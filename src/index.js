@@ -19,6 +19,7 @@ function Apollo( props ) {
                 <Route path="/magicbox" component={App.MagicBoxApp} /> 
                 <Route path="/reactstrap" component={App.ReactStrap} /> 
                 <Route path="/canvas" component={App.CanvasApp} /> 
+                <Route path="/svg" component={App.SvgApp} /> 
             </Switch>
         </Container>
     );

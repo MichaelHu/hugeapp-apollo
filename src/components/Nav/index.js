@@ -28,9 +28,11 @@ export default class MyNav extends Component {
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
+
                 <NavItem>
                     <Link className="nav-link" to="/todo">Todo</Link>
                 </NavItem>
+
                 <UncontrolledDropdown nav inNavbar>
                     <DropdownToggle nav caret>
                         ECharts
@@ -47,12 +49,34 @@ export default class MyNav extends Component {
                         </DropdownItem>
                     </DropdownMenu>
                 </UncontrolledDropdown>
+
                 <NavItem>
                     <Link className="nav-link" to="/magicbox">MagicBox</Link>
                 </NavItem>
+
                 <NavItem>
                     <Link className="nav-link" to="/reactstrap">ReactStrap</Link>
                 </NavItem>
+
+                <UncontrolledDropdown nav inNavbar>
+                    <DropdownToggle nav caret>
+                        SVG
+                    </DropdownToggle>
+                    <DropdownMenu>
+                        <DropdownItem>
+                            <Link className="nav-link" to="/svg/d3-force">d3-force</Link>
+                        </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem>
+                            <Link className="nav-link" to="/svg/d3-dendrogram">d3-dendrogram</Link>
+                        </DropdownItem>
+                    </DropdownMenu>
+                </UncontrolledDropdown>
+
+                <NavItem>
+                    <Link className="nav-link" to="/webgl">WebGL</Link>
+                </NavItem>
+
                 <UncontrolledDropdown nav inNavbar>
                     <DropdownToggle nav caret>
                         Canvas
