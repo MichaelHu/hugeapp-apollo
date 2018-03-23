@@ -4,6 +4,7 @@ import ReactStrap from './reactstrap';
 import CanvasApp from './canvas';
 import EchartsApp from './echarts';
 import SvgApp from './svg';
+import WebGLApp from './webgl';
 
 export {
     TodoApp
@@ -12,4 +13,5 @@ export {
     , CanvasApp
     , EchartsApp
     , SvgApp
+    , WebGLApp
 };

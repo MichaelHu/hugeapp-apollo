@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col, Collapse
     , Navbar, NavbarToggler, NavbarBrand
@@ -73,9 +74,17 @@ export default class MyNav extends Component {
                     </DropdownMenu>
                 </UncontrolledDropdown>
 
-                <NavItem>
-                    <Link className="nav-link" to="/webgl">WebGL</Link>
-                </NavItem>
+                <UncontrolledDropdown nav inNavbar>
+                    <DropdownToggle nav caret>
+                        WebGL
+                    </DropdownToggle>
+                    <DropdownMenu>
+                        <DropdownItem>
+                            <Link className="nav-link" to="/webgl/three-basic">three-basic</Link>
+                        </DropdownItem>
+                        <DropdownItem divider />
+                    </DropdownMenu>
+                </UncontrolledDropdown>
 
                 <UncontrolledDropdown nav inNavbar>
                     <DropdownToggle nav caret>

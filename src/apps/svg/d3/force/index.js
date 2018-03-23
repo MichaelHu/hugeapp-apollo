@@ -3,6 +3,7 @@ import Markdown from 'react-markdown';
 import styles from './index.scss';
 
 /**
+ * ===== default included =====
  * d3-array@1.2.1
  * d3-axis@1.0.8
  * d3-brush@1.0.4
@@ -33,6 +34,9 @@ import styles from './index.scss';
  * d3-transition@1.1.1
  * d3-voronoi@1.1.2
  * d3-zoom@1.7.1
+ *
+ * ===== install manually =====
+ * d3-fetch@1.1.0
  */
 
 import * as force from 'd3-force';

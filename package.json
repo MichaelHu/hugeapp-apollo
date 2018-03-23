@@ -7,8 +7,9 @@
     "author": "MichaelHu",
     "license": "MIT",
     "scripts": {
-        "build": "webpack",
-        "dev": "webpack-dev-server --config webpack.config.dev.js"
+        "build": "sh scripts/check-env.sh && webpack",
+        "dev": "sh scripts/check-env.sh && webpack-dev-server --config webpack.config.dev.js",
+        "reactopt": "sh scripts/check-env.sh && node node_modules/reactopt/main.js"
     },
     "devDependencies": {
         "babel-core": "^6.26.0",
@@ -26,6 +27,8 @@
         "postcss-loader": "^2.1.0",
         "precss": "^3.1.0",
         "pro-uglifyjs-webpack-plugin": "^1.1.1",
+        "puppeteer": "^1.2.0",
+        "reactopt": "^1.5.5",
         "sass-loader": "^6.0.6",
         "style-loader": "^0.19.1",
         "url-loader": "^0.6.2",
@@ -40,6 +43,7 @@
         "element-react": "^1.4.7",
         "element-theme-default": "^1.4.13",
         "jquery": "^3.2.1",
+        "nervjs": "^1.2.15",
         "react": "^16.2.0",
         "react-dom": "^16.2.0",
         "react-loadable": "^5.3.1",
@@ -49,6 +53,7 @@
         "react-router-dom": "^4.2.2",
         "react-router-redux": "^4.0.8",
         "reactstrap": "^5.0.0-beta",
-        "redux": "^3.7.2"
+        "redux": "^3.7.2",
+        "three": "^0.91.0"
     }
 }

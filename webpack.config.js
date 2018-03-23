@@ -26,6 +26,10 @@ module.exports = {
         , alias: {
             // a list of module name aliases
 
+            // nervjs cannot fully replace React now
+            // 'react': 'nervjs'
+            // , 'react-dom': 'nervjs'
+
             // module: "new-module",
             // alias "module" -> "new-module" and "module/path/file" -> "new-module/path/file"
 

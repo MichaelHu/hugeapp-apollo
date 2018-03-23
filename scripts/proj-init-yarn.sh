@@ -1,11 +1,15 @@
 #!/bin/bash
 
-yarn add d3-fetch
+yarn add three
 
 exit 0
 
-yarn add d3
+# yarn add nervjs
 
+yarn add puppeteer --dev
+yarn add reactopt --dev
+yarn add d3-fetch
+yarn add d3
 yarn add echarts
 yarn add element-react
 yarn add element-theme-default
