@@ -41,7 +41,9 @@ export default class ThreeBasic extends Component {
         renderer.setSize( $container.width(), $container.height() );
         $container.append( renderer.domElement );
 
+        // 1. to create a cube, we need a BoxGeometry
         let geometry = new THREE.BoxGeometry( 1, 1, 1 );
+        // 2. in addition to the geometry, we need a material to color it
         let material = new THREE.MeshBasicMaterial( { 
             color: 0x00ff00 
             , opacity: 0.3
@@ -49,12 +51,15 @@ export default class ThreeBasic extends Component {
         let cube = new THREE.Mesh( geometry, material );
         scene.add( cube );
         camera.position.z = 2.5;
-        camera.position.x = -1.5;
+        // camera.position.x = -1.5;
 
         function animate() {
+            // `requestAnimationFrame()` pauses when the user navigates to another 
+            // browser tab, hence not wasting their precious processing power 
+            // and battery life
             requestAnimationFrame( animate );
-            cube.rotation.x += 0.05;
-            // cube.rotation.y += 0.05;
+            // cube.rotation.x += 0.05;
+            cube.rotation.y += 0.05;
             renderer.render( scene, camera );
         }
 
@@ -72,7 +77,7 @@ export default class ThreeBasic extends Component {
      * Rendering 
      */
     render() {
-        return <div className={styles[ 'canvas-container' ]} ref="canvas-container"> Three Basic </div>
+        return <div className={styles[ 'canvas-container' ]} ref="canvas-container"> THREE Basic </div>
     }
 
     /**

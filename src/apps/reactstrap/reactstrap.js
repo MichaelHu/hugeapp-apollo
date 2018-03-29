@@ -15,6 +15,7 @@ import RowNavbar from './components/RowNavbar';
 import RowModal from './components/RowModal';
 import RowListGroup from './components/RowListGroup';
 import RowTooltip from './components/RowTooltip';
+import RowForm from './components/RowForm';
 
 
 class ReactStrap extends React.Component {
@@ -33,6 +34,7 @@ class ReactStrap extends React.Component {
                 , Modal: RowModal
                 , ListGroup: RowListGroup
                 , Tooltip: RowTooltip
+                , Form: RowForm
             };
 
         const items = Object.keys( itemConfig ).map( ( key, index ) => {
@@ -48,7 +50,7 @@ class ReactStrap extends React.Component {
         return ( 
             <Container>
                 <NavLink href="https://reactstrap.github.io/components/">
-                    RecatStrap Components
+                    RecatStrap Components =>
                 </NavLink> 
                 { items }
             </Container>
