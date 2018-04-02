@@ -94,6 +94,10 @@ export default class MyNav extends Component {
                         <DropdownItem>
                             <Link className="nav-link" to="/webgl/three-text">three-text</Link>
                         </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem>
+                            <Link className="nav-link" to="/webgl/three-geometry">three-geometry</Link>
+                        </DropdownItem>
                     </DropdownMenu>
                 </UncontrolledDropdown>
 

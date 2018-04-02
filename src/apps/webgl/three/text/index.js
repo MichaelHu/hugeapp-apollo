@@ -4,6 +4,7 @@ import $ from 'jquery';
 import * as THREE from 'three';
 import { Row, Col, Form, FormGroup
     , Label, Input, Button } from 'reactstrap';
+import Markdown from 'react-markdown';
 
 import styles from './index.scss';
 import * as fonts from '../assets/fonts';
@@ -101,7 +102,7 @@ export default class Text extends Component {
         renderer.setSize( $container.width(), $container.height() );
         $container.append( renderer.domElement );
 
-        let text = '阿波罗号';
+        let text = '空间数据可视化';
         let textMesh1, textMesh2;
         // let fontName = 'Gentilis';
         // let fontWeight = 'Bold';
@@ -260,7 +261,12 @@ export default class Text extends Component {
     render() {
         return (
             <div className={styles[ 'canvas-container' ]} ref="canvas-container"> 
-            THREE Text 
+                <Markdown source={`
+### 3D文字演示
+* 利用facetype.js将ttf生成json文件，可以展示中文
+* 旋转符合右手规则
+* Mesh存在两面性，未设置THREE.DoubleSide，那么另一面则不可见
+                    `} />
                 <Form>
                     <FormGroup>
                         <Input ref="input"

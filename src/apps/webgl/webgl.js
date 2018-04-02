@@ -5,45 +5,33 @@ const Loading = ( props ) => {
     return <div> Loading ... </div>;
 };
 
-const LoadableTHREEBasic = Loadable( {
-    loader: () => import( './three/basic/index' ) 
-    , loading: Loading
-    , render( loaded, props ) {
-        return <div><loaded.default /></div>;
-    }
-} );
+const geometries  = [
+    'basic'
+    , 'lines'
+    , 'text'
+    , 'plane'
+    , 'geometry'
+];
 
-const LoadableTHREELines = Loadable( {
-    loader: () => import( './three/lines/index' ) 
-    , loading: Loading
-    , render( loaded, props ) {
-        return <div><loaded.default /></div>;
-    }
-} );
-
-const LoadableTHREEText = Loadable( {
-    loader: () => import( './three/text/index' ) 
-    , loading: Loading
-    , render( loaded, props ) {
-        return <div><loaded.default /></div>;
-    }
-} );
-
-const LoadableTHREEPlane = Loadable( {
-    loader: () => import( './three/plane/index' ) 
-    , loading: Loading
-    , render( loaded, props ) {
-        return <div><loaded.default /></div>;
-    }
+let loadableComponents = [];
+geometries.forEach( ( item ) => {
+    loadableComponents[ item ] = Loadable( {
+        loader: () => import( './three/' + item + '/index' )
+        , loading: Loading
+        , render( loaded, props ) {
+            return <div><loaded.default /></div>;
+        }
+    } );
 } );
 
 const WebGL = ( props ) => {
     return (
         <div>
-            <Route path="/webgl/three-basic" component={LoadableTHREEBasic} />
-            <Route path="/webgl/three-lines" component={LoadableTHREELines} />
-            <Route path="/webgl/three-text" component={LoadableTHREEText} />
-            <Route path="/webgl/three-plane" component={LoadableTHREEPlane} />
+            <Route path="/webgl/three-basic" component={loadableComponents[ 'basic' ]} />
+            <Route path="/webgl/three-lines" component={loadableComponents[ 'lines' ]} />
+            <Route path="/webgl/three-text" component={loadableComponents[ 'text' ]} />
+            <Route path="/webgl/three-plane" component={loadableComponents[ 'plane' ]} />
+            <Route path="/webgl/three-geometry" component={loadableComponents[ 'geometry' ]} />
         </div>
     );
 };
