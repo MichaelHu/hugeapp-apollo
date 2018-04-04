@@ -63,6 +63,13 @@ export default class ThreeBasic extends Component {
             renderer.render( scene, camera );
         }
 
+        const onresize = () => {
+            renderer.setSize( $container.width(), $container.height() );
+            renderer.render( scene, camera );
+        };
+
+        $( window ).on( 'resize', onresize );
+
         animate();
     }
 

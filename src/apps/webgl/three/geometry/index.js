@@ -127,6 +127,13 @@ export default class ThreeGeometry extends Component {
             render();
         };
 
+        const onresize = () => {
+            renderer.setSize( $container.width(), $container.height() );
+            render();
+        };
+
+        $( window ).on( 'resize', onresize );
+
         layout();
         animate();
     }
@@ -147,20 +154,25 @@ export default class ThreeGeometry extends Component {
                 <div className={styles[ 'canvas-container' ]} 
                     ref="canvas-container">
                 </div>
-                THREE Geometries: <Button color="primary" onClick={this.toggle}>Toogle</Button>
+                THREE Geometries: <Button color="link" onClick={this.toggle}>Toogle</Button>
                 <Row>
                     <Col>
                         <Collapse isOpen={this.state.showText}>
                             <Card>
                                 <CardBody>
 <Markdown source={`
+## 光
+
+    DirectionalLight            方向光源，发射平行光
+    PointLight                  点光源
+
+## 几何体
 
     CircleGeometry              圆盘
     BoxGeometry                 立方体（三维方块）
     ConeGeometry                圆锥体
     CylinderGeometry            圆柱体
     DodecahedronGeometry        十二面体
-    EdgesGeometry               边几何体，用于展示其他几何体
     RingGeometry                圆环
     ShapeGeometry               自定义形状
     SphereGeometry              球体 
@@ -169,6 +181,10 @@ export default class ThreeGeometry extends Component {
     TubeGeometry                管状体
     TetrahedronGeometry         四面体
     PolyhedronGeometry          自定义多面体
+
+## 辅助类几何体
+
+    EdgesGeometry               边几何体，用于展示其他几何体
     WireframeGeometry           线框体，用于展示其他几何体
 
 `}/>

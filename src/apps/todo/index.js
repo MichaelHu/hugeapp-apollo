@@ -5,14 +5,12 @@ import todoBundle from 'bundle-loader?lazy!./todo';
 
 export default function TodoApp( props ) {
     return ( 
-        <Route>
-            <Bundle load={todoBundle}>
-                { 
-                    ( TodoMain ) => {
-                        return <TodoMain />;
-                    } 
-                }
-            </Bundle>
-        </Route>
+        <Bundle load={todoBundle}>
+            { 
+                ( TodoMain ) => {
+                    return <TodoMain />;
+                } 
+            }
+        </Bundle>
     );
 }
