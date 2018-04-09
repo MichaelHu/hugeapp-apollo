@@ -3,23 +3,26 @@ import PropTypes from 'prop-types';
 import Markdown from 'react-markdown';
 import { Row, Col, Collapse, Button, Card, CardBody } from 'reactstrap';
 
-import circleObject from './objects/circle';
-import boxObject from './objects/box';
-import coneObject from './objects/cone';
-import cylinderObject from './objects/cylinder';
-import dodecahedronObject from './objects/dodecahedron';
-import edgesObject from './objects/edges';
-import ringObject from './objects/ring';
-import shapeObject from './objects/shape';
-import sphereObject from './objects/sphere';
-import torusObject from './objects/torus';
-import torusKnotObject from './objects/torusknot';
-import tubeObject from './objects/tube';
-import tetrahedronObject from './objects/tetrahedron';
-import polyhedronObject from './objects/polyhedron';
-import wireframeObject from './objects/wireframe';
+import circleObject from '../geometry/objects/circle';
+import boxObject from '../geometry/objects/box';
+import coneObject from '../geometry/objects/cone';
+import cylinderObject from '../geometry/objects/cylinder';
+import dodecahedronObject from '../geometry/objects/dodecahedron';
+import edgesObject from '../geometry/objects/edges';
+import ringObject from '../geometry/objects/ring';
+import shapeObject from '../geometry/objects/shape';
+import sphereObject from '../geometry/objects/sphere';
+import torusObject from '../geometry/objects/torus';
+import torusKnotObject from '../geometry/objects/torusknot';
+import tubeObject from '../geometry/objects/tube';
+import tetrahedronObject from '../geometry/objects/tetrahedron';
+import polyhedronObject from '../geometry/objects/polyhedron';
+import wireframeObject from '../geometry/objects/wireframe';
+
+import 'three/examples/js/controls/OrbitControls';
 
 import styles from './index.scss';
+import imgA from './assets/benz-1024-1024-1.jpg';
 
 export default class ThreeGeometry extends Component {
 
@@ -53,32 +56,33 @@ export default class ThreeGeometry extends Component {
             , 500
         );
         let renderer = new THREE.WebGLRenderer( { antialias: true } );
+        renderer.setClearColor( new THREE.Color( 0xff0000, 0.6 ) );
 
 
         let groups = [];
-        groups.push( circleObject() );
-        groups.push( boxObject() );
-        groups.push( coneObject() );
-        groups.push( cylinderObject() );
-        groups.push( edgesObject() );
-        groups.push( ringObject() );
-        groups.push( shapeObject() );
-        groups.push( dodecahedronObject() );
-        groups.push( torusObject() );
-        groups.push( torusKnotObject() );
-        groups.push( tubeObject() );
-        groups.push( tetrahedronObject() );
-        groups.push( polyhedronObject() );
-        groups.push( wireframeObject() );
-        groups.push( sphereObject() );
+        groups.push( circleObject( imgA ) );
+        groups.push( boxObject( imgA ) );
+        groups.push( coneObject( imgA ) );
+        groups.push( cylinderObject( imgA ) );
+        groups.push( edgesObject( imgA ) );
+        groups.push( ringObject( imgA ) );
+        groups.push( shapeObject( imgA ) );
+        groups.push( dodecahedronObject( imgA ) );
+        groups.push( torusObject( imgA ) );
+        groups.push( torusKnotObject( imgA ) );
+        groups.push( tubeObject( imgA ) );
+        groups.push( tetrahedronObject( imgA ) );
+        groups.push( polyhedronObject( imgA ) );
+        groups.push( wireframeObject( imgA ) );
+        groups.push( sphereObject( imgA ) );
 
         groups.forEach( ( group ) => scene.add( group ) );
 
-        let dirLight = new THREE.DirectionalLight( 0xff00ff, 0.7 );
+        let dirLight = new THREE.DirectionalLight( 0xff00ff, 1 );
         dirLight.position.set( 0, 0, 1 ).normalize();
         scene.add( dirLight );
 
-        let pointLight = new THREE.PointLight( 0xffffff, 1.5 );
+        let pointLight = new THREE.PointLight( 0xffffff, 2.5 );
         pointLight.position.set( -10, -10, -20 );
         scene.add( pointLight );
 
@@ -88,6 +92,16 @@ export default class ThreeGeometry extends Component {
         camera.position.y = -10;
         camera.lookAt( 0, 0, 0 );
         renderer.setSize( $container.width(), $container.height() );
+
+        /**
+         * OrbitControls( object : Camera, domElement : HTMLDOMElement )
+         * 
+         * object: (required) The camera to be controlled.
+         * domElement: (optional) The HTML element used for event listeners. By default this is the whole document, however if you only want to the controls to work over a specific element (e.g. the canvas) you can specify that here.
+         */
+        let controls = new THREE.OrbitControls( camera );
+        controls.update();
+        this.unregisterEvents.push( () => controls.dispose() );
 
         const layout = () => {
             let level = 0;
@@ -125,6 +139,7 @@ export default class ThreeGeometry extends Component {
         const animate = () => {
             requestAnimationFrame( animate );
             groups.forEach( ( group ) => group.rotation.y += 0.01 );
+            controls.update();
             render();
         };
 
@@ -229,4 +244,5 @@ export default class ThreeGeometry extends Component {
      */
 
 }
+
 

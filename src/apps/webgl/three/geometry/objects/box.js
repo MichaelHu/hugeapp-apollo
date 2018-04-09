@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-export default function box() {
+export default function box( texture = false ) {
 
     /**
      * BoxGeometry(width : Float, height : Float, depth : Float
@@ -19,9 +19,33 @@ export default function box() {
     let phongMaterial = new THREE.MeshPhongMaterial( {
         color: 0x156289
         , emissive: 0x072534
+        // color: 0xeeeeee
+        // , emissive: 0x666666
         // , side: THREE.DoubleSide
         , flatShading: true
     } );
+
+    if ( texture ) {
+        let mapImage, envImage;
+        let mapTexture, envTexture;
+        let textureLoader, envTextureLoader;
+
+        if ( 'string' == typeof texture ) {
+            mapImage = texture;
+            envTexture = null;
+            textureLoader = new THREE.TextureLoader();;
+            mapTexture = textureLoader.load( texture );
+        }
+        else {
+            mapImage = texture.map;
+            envTexture = texture.env;
+            textureLoader = new THREE.TextureLoader();;
+            mapTexture = textureLoader.load( texture );
+            // todo
+        }
+        phongMaterial.map = mapTexture; 
+    }      
+      
     let box = new THREE.Mesh( boxGeometry, phongMaterial );
     let lineMaterial = new THREE.LineBasicMaterial( {
         color: 0xffffff

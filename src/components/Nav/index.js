@@ -82,21 +82,23 @@ export default class MyNav extends Component {
                         <DropdownItem>
                             <Link className="nav-link" to="/webgl/three-basic">three-basic</Link>
                         </DropdownItem>
-                        <DropdownItem divider />
                         <DropdownItem>
                             <Link className="nav-link" to="/webgl/three-lines">three-lines</Link>
                         </DropdownItem>
-                        <DropdownItem divider />
                         <DropdownItem>
                             <Link className="nav-link" to="/webgl/three-plane">three-plane</Link>
                         </DropdownItem>
-                        <DropdownItem divider />
                         <DropdownItem>
                             <Link className="nav-link" to="/webgl/three-text">three-text</Link>
                         </DropdownItem>
-                        <DropdownItem divider />
                         <DropdownItem>
                             <Link className="nav-link" to="/webgl/three-geometry">three-geometry</Link>
+                        </DropdownItem>
+                        <DropdownItem>
+                            <Link className="nav-link" to="/webgl/three-texture">three-texture</Link>
+                        </DropdownItem>
+                        <DropdownItem>
+                            <Link className="nav-link" to="/webgl/three-sprite">three-sprite</Link>
                         </DropdownItem>
                     </DropdownMenu>
                 </UncontrolledDropdown>

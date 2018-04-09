@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-export default function cylinder() {
+export default function cylinder( texture = false ) {
 
     /**
      * CylinderGeometry(radiusTop : Float, radiusBottom : Float, height : Float
@@ -25,6 +25,28 @@ export default function cylinder() {
         // , side: THREE.DoubleSide
         , flatShading: true
     } );
+
+    if ( texture ) {
+        let mapImage, envImage;
+        let mapTexture, envTexture;
+        let textureLoader, envTextureLoader;
+
+        if ( 'string' == typeof texture ) {
+            mapImage = texture;
+            envTexture = null;
+            textureLoader = new THREE.TextureLoader();;
+            mapTexture = textureLoader.load( texture );
+        }
+        else {
+            mapImage = texture.map;
+            envTexture = texture.env;
+            textureLoader = new THREE.TextureLoader();;
+            mapTexture = textureLoader.load( texture );
+            // todo
+        }
+        phongMaterial.map = mapTexture; 
+    }      
+      
     let cylinder = new THREE.Mesh( cylinderGeometry, phongMaterial );
     let lineMaterial = new THREE.LineBasicMaterial( {
         color: 0xffffff

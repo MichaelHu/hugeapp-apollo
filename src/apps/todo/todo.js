@@ -32,6 +32,9 @@ class Tips extends Component {
 ## key的设置
 * 确保其唯一性，使用array index或者todo.id是有区别的，react会在元素更新时，根据其key值进行复用，本例中，如果使用array index作为key值，可能出现无法删除指定项的情况，这和复用元素有关
 
+## 参考
+* TodoMVC: <http://todomvc.com/examples/react/#/>
+
                 `}/>
                                 </CardBody>
                             </Card>

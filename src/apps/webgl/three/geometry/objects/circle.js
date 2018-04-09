@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-export default function circle() {
+export default function circle( texture = false ) {
 
     /**
      * CircleGeometry(radius : Float, segments : Integer, thetaStart : Float, thetaLength : Float)
@@ -17,6 +17,28 @@ export default function circle() {
         , side: THREE.DoubleSide
         , flatShading: true
     } );
+
+    if ( texture ) {
+        let mapImage, envImage;
+        let mapTexture, envTexture;
+        let textureLoader, envTextureLoader;
+
+        if ( 'string' == typeof texture ) {
+            mapImage = texture;
+            envTexture = null;
+            textureLoader = new THREE.TextureLoader();;
+            mapTexture = textureLoader.load( texture );
+        }
+        else {
+            mapImage = texture.map;
+            envTexture = texture.env;
+            textureLoader = new THREE.TextureLoader();;
+            mapTexture = textureLoader.load( texture );
+            // todo
+        }
+        phongMaterial.map = mapTexture; 
+    }      
+
     let circle = new THREE.Mesh( circleGeometry, phongMaterial );
     let lineMaterial = new THREE.LineBasicMaterial( {
         color: 0xffffff

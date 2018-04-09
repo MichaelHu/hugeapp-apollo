@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-export default function wireframe() {
+export default function wireframe( texture = false ) {
 
     /**
      * This can be used as a helper object to view a Geometry object as a wireframe.
@@ -18,6 +18,28 @@ export default function wireframe() {
         // , side: THREE.DoubleSide
         , flatShading: true
     } );
+
+    if ( texture ) {
+        let mapImage, envImage;
+        let mapTexture, envTexture;
+        let textureLoader, envTextureLoader;
+
+        if ( 'string' == typeof texture ) {
+            mapImage = texture;
+            envTexture = null;
+            textureLoader = new THREE.TextureLoader();;
+            mapTexture = textureLoader.load( texture );
+        }
+        else {
+            mapImage = texture.map;
+            envTexture = texture.env;
+            textureLoader = new THREE.TextureLoader();;
+            mapTexture = textureLoader.load( texture );
+            // todo
+        }
+        phongMaterial.map = mapTexture; 
+    }      
+
     let sphere = new THREE.Mesh( sphereGeometry, phongMaterial );
     let lineMaterial = new THREE.LineBasicMaterial( {
         color: 0xffffff

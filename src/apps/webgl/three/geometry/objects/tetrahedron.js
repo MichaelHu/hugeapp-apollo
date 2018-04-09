@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-export default function tetrahedron() {
+export default function tetrahedron( texture = false ) {
 
     /**
      * 四面体
@@ -17,6 +17,28 @@ export default function tetrahedron() {
         // , side: THREE.DoubleSide
         , flatShading: true
     } );
+
+    if ( texture ) {
+        let mapImage, envImage;
+        let mapTexture, envTexture;
+        let textureLoader, envTextureLoader;
+
+        if ( 'string' == typeof texture ) {
+            mapImage = texture;
+            envTexture = null;
+            textureLoader = new THREE.TextureLoader();;
+            mapTexture = textureLoader.load( texture );
+        }
+        else {
+            mapImage = texture.map;
+            envTexture = texture.env;
+            textureLoader = new THREE.TextureLoader();;
+            mapTexture = textureLoader.load( texture );
+            // todo
+        }
+        phongMaterial.map = mapTexture; 
+    }      
+
     let tetrahedron = new THREE.Mesh( tetrahedronGeometry, phongMaterial );
     let lineMaterial = new THREE.LineBasicMaterial( {
         color: 0xffffff

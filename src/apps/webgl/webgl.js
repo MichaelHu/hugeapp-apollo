@@ -11,6 +11,8 @@ const geometries  = [
     , 'text'
     , 'plane'
     , 'geometry'
+    , 'texture'
+    , 'sprite'
 ];
 
 let loadableComponents = [];
@@ -32,6 +34,8 @@ const WebGL = ( props ) => {
             <Route path="/webgl/three-text" component={loadableComponents[ 'text' ]} />
             <Route path="/webgl/three-plane" component={loadableComponents[ 'plane' ]} />
             <Route path="/webgl/three-geometry" component={loadableComponents[ 'geometry' ]} />
+            <Route path="/webgl/three-texture" component={loadableComponents[ 'texture' ]} />
+            <Route path="/webgl/three-sprite" component={loadableComponents[ 'sprite' ]} />
         </div>
     );
 };

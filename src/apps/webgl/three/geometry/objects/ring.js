@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-export default function ring() {
+export default function ring( texture = false ) {
 
     /**
      * RingGeometry(innerRadius : Float, outerRadius : Float, thetaSegments : Integer
@@ -22,6 +22,28 @@ export default function ring() {
         , side: THREE.DoubleSide
         , flatShading: true
     } );
+
+    if ( texture ) {
+        let mapImage, envImage;
+        let mapTexture, envTexture;
+        let textureLoader, envTextureLoader;
+
+        if ( 'string' == typeof texture ) {
+            mapImage = texture;
+            envTexture = null;
+            textureLoader = new THREE.TextureLoader();;
+            mapTexture = textureLoader.load( texture );
+        }
+        else {
+            mapImage = texture.map;
+            envTexture = texture.env;
+            textureLoader = new THREE.TextureLoader();;
+            mapTexture = textureLoader.load( texture );
+            // todo
+        }
+        phongMaterial.map = mapTexture; 
+    }      
+
     let ring = new THREE.Mesh( ringGeometry, phongMaterial );
     let lineMaterial = new THREE.LineBasicMaterial( {
         color: 0xffffff

@@ -16,6 +16,7 @@ export default class Particle extends Component {
             granularity: 3
             , randomColor: false
         };
+        this.unregisterEvents = [];
     }
 
     initCanvas() {
@@ -224,7 +225,9 @@ export default class Particle extends Component {
     componentDidMount() {
         this.initCanvas();
         this.onresize();
-        $( window ).on( 'resize', () => this.onresize() );
+        const onResize = () => this.onresize();
+        $( window ).on( 'resize', onResize );
+        this.unregisterEvents.push( () => $( window ).off( 'resize', onResize ) );
     }
 
     componentDidUpdate( prevProps, prevState ) {
@@ -240,19 +243,14 @@ export default class Particle extends Component {
         this.setState( { randomColor: value } );
     }
 
+    componentWillUnmount() {
+        this.unregisterEvents.forEach( unreg => unreg() );
+    }
+
     render() {
         
         return (
             <div>
-                <Markdown source={`
-
-### 粒子特效
-* Pixel Manipulation，通过像素操作，实现多种图像特效
-* 参数 _granularity_ 用于设置粒子粒度
-* 参数 _randomColor_ 用于设置处理像素颜色时是否使用随机颜色
-* 字体尺寸大小根据画布大小自适应调整
-
-                    `} />
                 <Tag type="primary">granularity</Tag>
                 <Slider min={0} max={30} value={this.state.granularity} 
                     showStops showInput
@@ -260,6 +258,16 @@ export default class Particle extends Component {
                 <Checkbox checked={this.state.randomColor}
                     onChange={this.onrandomcolorchange}>随机颜色( randomColor )</Checkbox>
                 <div ref="canvas-container" className={styles[ 'canvas-container' ]}></div>
+                <Markdown source={`
+
+### 粒子特效
+
+* Pixel Manipulation，通过像素操作，实现多种图像特效
+* 参数 _granularity_ 用于设置粒子粒度
+* 参数 _randomColor_ 用于设置处理像素颜色时是否使用随机颜色
+* 字体尺寸大小根据画布大小自适应调整
+
+                    `} />
             </div>
         );
 

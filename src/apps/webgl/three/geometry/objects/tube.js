@@ -16,7 +16,7 @@ CustomSinCurve.prototype.getPoint = function( t ) {
     return new THREE.Vector3( tx, ty, tz ).multiplyScalar( this.scale );
 };
 
-export default function tube() {
+export default function tube( texture = false ) {
 
     /**
      * TubeGeometry(path : Curve, tubularSegments : Integer, radius : Float
@@ -38,6 +38,28 @@ export default function tube() {
         , side: THREE.DoubleSide
         , flatShading: true
     } );
+
+    if ( texture ) {
+        let mapImage, envImage;
+        let mapTexture, envTexture;
+        let textureLoader, envTextureLoader;
+
+        if ( 'string' == typeof texture ) {
+            mapImage = texture;
+            envTexture = null;
+            textureLoader = new THREE.TextureLoader();;
+            mapTexture = textureLoader.load( texture );
+        }
+        else {
+            mapImage = texture.map;
+            envTexture = texture.env;
+            textureLoader = new THREE.TextureLoader();;
+            mapTexture = textureLoader.load( texture );
+            // todo
+        }
+        phongMaterial.map = mapTexture; 
+    }      
+
     let tube = new THREE.Mesh( tubeGeometry, phongMaterial );
     let lineMaterial = new THREE.LineBasicMaterial( {
         color: 0xffffff

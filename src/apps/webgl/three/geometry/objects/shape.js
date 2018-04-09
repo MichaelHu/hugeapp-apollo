@@ -19,7 +19,7 @@ const heartShape = ( x, y, size ) => {
     return shape;
 };
 
-export default function shape() {
+export default function shape( texture = false ) {
 
     /**
      * iShapeGeometry(shapes : Array, curveSegments : Integer)
@@ -36,6 +36,28 @@ export default function shape() {
         , side: THREE.DoubleSide
         , flatShading: true
     } );
+
+    if ( texture ) {
+        let mapImage, envImage;
+        let mapTexture, envTexture;
+        let textureLoader, envTextureLoader;
+
+        if ( 'string' == typeof texture ) {
+            mapImage = texture;
+            envTexture = null;
+            textureLoader = new THREE.TextureLoader();;
+            mapTexture = textureLoader.load( texture );
+        }
+        else {
+            mapImage = texture.map;
+            envTexture = texture.env;
+            textureLoader = new THREE.TextureLoader();;
+            mapTexture = textureLoader.load( texture );
+            // todo
+        }
+        phongMaterial.map = mapTexture; 
+    }      
+
     let shape = new THREE.Mesh( shapeGeometry, phongMaterial );
     let lineMaterial = new THREE.LineBasicMaterial( {
         color: 0xffffff
