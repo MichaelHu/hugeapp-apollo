@@ -30,6 +30,23 @@ export default class MyNav extends Component {
         <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
 
+                <UncontrolledDropdown nav inNavbar>
+                    <DropdownToggle nav caret>
+                        Map
+                    </DropdownToggle>
+                    <DropdownMenu>
+                        <DropdownItem>
+                            <Link className="nav-link" to="/map/leaflet-baidu">leaflet-baidu</Link>
+                        </DropdownItem>
+                        <DropdownItem>
+                            <Link className="nav-link" to="/map/maptalks-heatmap">maptalks-heatmap</Link>
+                        </DropdownItem>
+                        <DropdownItem>
+                            <Link className="nav-link" to="/map/maptalks-echarts">maptalks-echarts</Link>
+                        </DropdownItem>
+                    </DropdownMenu>
+                </UncontrolledDropdown>
+
                 <NavItem>
                     <Link className="nav-link" to="/todo">Todo</Link>
                 </NavItem>

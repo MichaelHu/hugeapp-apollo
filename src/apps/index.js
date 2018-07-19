@@ -5,6 +5,7 @@ import CanvasApp from './canvas';
 import EchartsApp from './echarts';
 import SvgApp from './svg';
 import WebGLApp from './webgl';
+import Map from './map';
 
 export {
     TodoApp
@@ -14,4 +15,5 @@ export {
     , EchartsApp
     , SvgApp
     , WebGLApp
+    , Map
 };

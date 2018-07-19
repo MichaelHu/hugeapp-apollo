@@ -64,6 +64,8 @@ export default class ThreeSprite extends Component {
 
         function animate() {
             requestAnimationFrame( animate );
+            // console.log( sprite.rotation );
+            // sprite.rotation.y += 0.05;
             renderer.render( scene, camera );
         }
 

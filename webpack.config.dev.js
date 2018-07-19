@@ -196,7 +196,7 @@ config.devServer = {
     // , after: function( app ) {} // execute custom middleware after all other middleware internally within the server.
 
 
-    , allowedHosts: [] // whitelist services that are allowed to access the dev server
+    , allowedHosts: [ 'fe.sophon.com' ] // whitelist services that are allowed to access the dev server
     , bonjour: true // broadcasts the server via ZeroConf networking on start
     // value: "none" || "error" || "warning" || "info" 
     , clientLogLevel: "info" 

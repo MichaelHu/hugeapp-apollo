@@ -15,7 +15,7 @@ const geometries  = [
     , 'sprite'
 ];
 
-let loadableComponents = [];
+let loadableComponents = {};
 geometries.forEach( ( item ) => {
     loadableComponents[ item ] = Loadable( {
         loader: () => import( './three/' + item + '/index' )

@@ -1,8 +1,15 @@
 #!/bin/bash
 
-yarn add three
+yarn add maptalks.e3
 
 exit 0
+
+yarn add promise
+yarn add maptalks
+yarn add maptalks.heatmap
+
+yarn add leaflet
+yarn add three
 
 # yarn add nervjs
 

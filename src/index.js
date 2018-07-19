@@ -1,4 +1,3 @@
-import './style.css';
 import $ from 'jquery';
 import React from 'react';
 // import { reactopt } from 'reactopt';
@@ -8,6 +7,8 @@ import { BrowserRouter as Router, Route
 import * as App from './apps';
 import Nav from 'Nav';
 import { Container } from 'reactstrap';
+
+import styles from './style.css';
 
 // reactopt( React );
 
@@ -24,6 +25,7 @@ function Apollo( props ) {
                 <Route path="/canvas" component={App.CanvasApp} /> 
                 <Route path="/svg" component={App.SvgApp} /> 
                 <Route path="/webgl" component={App.WebGLApp} /> 
+                <Route path="/map" component={App.Map} /> 
             </Switch>
         </Container>
     );
