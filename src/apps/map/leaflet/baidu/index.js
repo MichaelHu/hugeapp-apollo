@@ -28,6 +28,7 @@ export default class BMap extends Component {
         let opt = this.props.options;
 
         this.map = this.createMap( this.refs[ 'map-container' ] );
+        this.registerEvents();
     }
 
     /**
@@ -67,7 +68,17 @@ export default class BMap extends Component {
      * Event Handlers
      */
 
-
+    registerEvents() {
+        this.map.on( 'click', ( e ) => console.log( e ) );
+        this.tileLayer.on( 'load', ( e ) => {
+            $.each(
+                $('.leaflet-tile')
+                , function(key, item){
+                    $(item).css('transform', $(item).css('transform') + ' scale(1.002)');
+                }
+            );
+        } );
+    }
 
 
 
@@ -76,26 +87,16 @@ export default class BMap extends Component {
      */
     createMap( selector ) {
 
-        // let point = [116.3452903556, 40.0455321506 ];       // 西小口地铁站
-        let point = [116.3452903556, 40.0055321506 ]; 
-        let zoom = 11;
+        let center = [ 0, 0 ];
+        let zoom = 1;
 
-        // point = [ 40.712216, -74.15337 ]
-        point = [ 345, 270 ].reverse();
-
-        // let center = point.reverse();
-        let center = point;
-        zoom = 1;
-
-        var map = L.map( $( selector )[ 0 ], {
-            maxZoom: 18
-            , minZoom: 0
+        let map = this.map = L.map( $( selector )[ 0 ], {
+            maxZoom: 5
+            , minZoom: 1
             , scrollWheelZoom: false
             , wheelPxPerZoomLevel: 200
             , wheelDebounceTime: 200
             , inertiaMaxSpeed: 300
-            // , crs: L.CRS.baidu
-            // , crs: L.CRS.Simple
             , crs: L.CRS.graph
             , zoomControl: false
             , doubleClickZoom: false
@@ -103,7 +104,7 @@ export default class BMap extends Component {
         }).setView( center, zoom );
 
         // new L.TileLayer.Baidu().addTo( map );
-        new L.TileLayer.Graph().addTo( map );
+        this.tileLayer = new L.TileLayer.Graph().addTo( map );
         // L.tileLayer.baidu( 'Satelite.Map' ).addTo( map );
         // L.tileLayer.baidu( 'Satelite.Road' ).addTo( map );
         
@@ -114,8 +115,6 @@ export default class BMap extends Component {
 
         L.control.zoom( { position: 'topright' } )
             .addTo( map );
-
-        map.on( 'click', e => console.log( e ) );
 
         return map;
 

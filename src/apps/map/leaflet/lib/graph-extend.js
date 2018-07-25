@@ -26,7 +26,7 @@ L.Projection.Graph = {
 L.CRS.graph = L.extend( {}, L.CRS, {
     code: 'graph',
     projection: L.Projection.Graph,
-    infinite: true,
+    infinite: false,
     transformation: ( function () {
         var z = 2 + 8;
         var maxPixelLength = Math.pow( 2, z );
@@ -37,8 +37,8 @@ L.CRS.graph = L.extend( {}, L.CRS, {
 
 L.TileLayer.Graph = L.TileLayer.extend({
     options: {
-        minZoom: 0,
-        maxZoom: 2
+        minZoom: 1,
+        maxZoom: 5
     },
 
     initialize: function (type, options) {
@@ -53,22 +53,16 @@ L.TileLayer.Graph = L.TileLayer.extend({
             ;
 
         options.subdomains = desc.subdomains;
-        options.attribution = L.TileLayer.Baidu.attribution;
+        options.attribution = desc.attribution;
         L.TileLayer.prototype.initialize.call(this, url, options);
     },
 
-    getTileUrl: function (coords) {
+    getTileUrl: function ( coords ) {
         if( void 0 == coords.z ) {
             coords.z = this._map.getZoom();
         }
 
-        var y = coords.x + 1
-            , x = coords.y + 1
-            , graphCoords = L.point(x, y)
-            ;
-
-        graphCoords.z = coords.z;
-        return L.TileLayer.prototype.getTileUrl.call(this, graphCoords);
+        return L.TileLayer.prototype.getTileUrl.call( this, coords );
     }
 });
 
@@ -77,5 +71,6 @@ L.TileLayer.Graph.desc = {
         Map: '/static/graph-tiles/tree-{x}-{y}-{z}.png'
     }
     , subdomains: '0123456789'
+    , attribution: 'graph map'
 };
 

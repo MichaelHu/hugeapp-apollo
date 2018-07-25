@@ -5,3 +5,4 @@ node_modules
 *.bak
 *.log
 *.out
+dist/static/graph-tiles/*
