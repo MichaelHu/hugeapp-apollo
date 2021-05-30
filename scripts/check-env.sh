@@ -1,5 +1,6 @@
 #!/bin/bash
 
+exit 0
 node_version=$(node -v | awk -Fv '{print $2}')
 if [ $node_version != '8.9.4' ]; then
     echo 

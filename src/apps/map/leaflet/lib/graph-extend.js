@@ -38,7 +38,7 @@ L.CRS.graph = L.extend( {}, L.CRS, {
 L.TileLayer.Graph = L.TileLayer.extend({
     options: {
         minZoom: 1,
-        maxZoom: 5
+        maxZoom: 6
     },
 
     initialize: function (type, options) {
@@ -68,7 +68,7 @@ L.TileLayer.Graph = L.TileLayer.extend({
 
 L.TileLayer.Graph.desc = {
     Normal: {
-        Map: '/static/graph-tiles/tree-{x}-{y}-{z}.png'
+        Map: '/static/graph-tiles/zr-181017/tree-{x}-{y}-{z}.png'
     }
     , subdomains: '0123456789'
     , attribution: 'graph map'

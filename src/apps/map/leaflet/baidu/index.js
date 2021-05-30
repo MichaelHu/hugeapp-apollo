@@ -1,4 +1,5 @@
 import L from '../lib/leaflet';
+import $ from 'jquery';
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -29,6 +30,7 @@ export default class BMap extends Component {
 
         this.map = this.createMap( this.refs[ 'map-container' ] );
         this.registerEvents();
+        this.refreshHeight();
     }
 
     /**
@@ -44,7 +46,7 @@ export default class BMap extends Component {
      */
     render() {
         return (
-            <div className={styles.container}>
+            <div className={styles.container} ref="container">
                 <header className={styles.header}></header>
                 <div className={styles.content}>
                     <div className={styles.main} ref="map-container"></div>
@@ -58,7 +60,9 @@ export default class BMap extends Component {
     /**
      * Unmounting Phase
      */
-    componentWillUnmount() {}
+    componentWillUnmount() {
+        this.unregisterEvents();
+    }
 
 
 
@@ -69,15 +73,32 @@ export default class BMap extends Component {
      */
 
     registerEvents() {
-        this.map.on( 'click', ( e ) => console.log( e ) );
-        this.tileLayer.on( 'load', ( e ) => {
-            $.each(
-                $('.leaflet-tile')
-                , function(key, item){
-                    $(item).css('transform', $(item).css('transform') + ' scale(1.002)');
-                }
-            );
+        this.map.on( 'click', ( e ) => {
+            let latlng = e.latlng;
+            let divIcon = L.divIcon( { className: styles.icon } );
+
+            console.log( latlng );
+            L.marker( latlng, { icon: divIcon } )
+                .addTo( this.map )
+                ; 
         } );
+
+        // this.tileLayer.on( 'load', ( e ) => {
+            // $.each(
+                // $('.leaflet-tile')
+                // , function(key, item){
+                    // $(item).css('transform', $(item).css('transform') + ' scale(1.002)');
+                // }
+            // );
+        // } );
+        
+        $( window ).on( 'resize', this.refreshHeight );
+    }
+
+    unregisterEvents() {
+        this.map.off();
+        this.map.remove();
+        $( window ).off( 'resize', this.refreshHeight );
     }
 
 
@@ -91,7 +112,7 @@ export default class BMap extends Component {
         let zoom = 1;
 
         let map = this.map = L.map( $( selector )[ 0 ], {
-            maxZoom: 5
+            maxZoom: 6
             , minZoom: 1
             , scrollWheelZoom: false
             , wheelPxPerZoomLevel: 200
@@ -118,6 +139,14 @@ export default class BMap extends Component {
 
         return map;
 
+    }
+
+    refreshHeight = () => {
+        let $container = $( this.refs.container );
+        let offset = $container.offset();
+        let viewHeight = $( window ).height();
+        console.log( viewHeight, offset );
+        $container.height( viewHeight - offset.top );
     }
  
 

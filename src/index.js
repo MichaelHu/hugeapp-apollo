@@ -14,20 +14,24 @@ import styles from './style.css';
 
 function Apollo( props ) {
     return ( 
-        <Container>
-            <Nav />
-            <Switch>
-                <Route exact path="/" /> 
-                <Route path="/todo" component={App.TodoApp} /> 
-                <Route path="/echarts" component={App.EchartsApp} /> 
-                <Route path="/magicbox" component={App.MagicBoxApp} /> 
-                <Route path="/reactstrap" component={App.ReactStrap} /> 
-                <Route path="/canvas" component={App.CanvasApp} /> 
-                <Route path="/svg" component={App.SvgApp} /> 
-                <Route path="/webgl" component={App.WebGLApp} /> 
-                <Route path="/map" component={App.Map} /> 
-            </Switch>
-        </Container>
+        <div className={"container main-container"} style={{height: '100%'}}>
+            <div className="main-header">
+                <Nav />
+            </div>
+            <div className="main-content">
+                <Switch>
+                    <Route exact path="/" /> 
+                    <Route path="/todo" component={App.TodoApp} /> 
+                    <Route path="/echarts" component={App.EchartsApp} /> 
+                    <Route path="/magicbox" component={App.MagicBoxApp} /> 
+                    <Route path="/reactstrap" component={App.ReactStrap} /> 
+                    <Route path="/canvas" component={App.CanvasApp} /> 
+                    <Route path="/svg" component={App.SvgApp} /> 
+                    <Route path="/webgl" component={App.WebGLApp} /> 
+                    <Route path="/map" component={App.Map} /> 
+                </Switch>
+            </div>
+        </div>
     );
 }
 

@@ -6,6 +6,7 @@
     }
 
     .header {}
+
     .content {
         display: flex;
         height: 100%;
@@ -20,5 +21,13 @@
             flex: 0 1 0;
         }
     }
+
     .footer {}
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    border: 1px solid #f00;
 }

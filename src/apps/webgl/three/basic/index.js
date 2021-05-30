@@ -50,7 +50,7 @@ export default class ThreeBasic extends Component {
         } );
         let cube = new THREE.Mesh( geometry, material );
         scene.add( cube );
-        camera.position.z = 2.5;
+        camera.position.z = 3.5;
         // camera.position.x = -1.5;
 
         function animate() {
@@ -58,7 +58,7 @@ export default class ThreeBasic extends Component {
             // browser tab, hence not wasting their precious processing power 
             // and battery life
             requestAnimationFrame( animate );
-            // cube.rotation.x += 0.05;
+            cube.rotation.x += 0.05;
             cube.rotation.y += 0.05;
             renderer.render( scene, camera );
         }

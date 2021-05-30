@@ -4,3 +4,21 @@ html, body {
     height: 100%;
 }
 
+#root {
+    height: 100%;
+}
+
+.main-container {
+    display: flex;
+    flex-flow: column nowrap;
+    max-width: 100% ! important;
+
+    .main-header {
+        flex: 0 0 56px;
+    }
+
+    .main-content {
+        flex: 1 1 auto;
+    }
+}
+

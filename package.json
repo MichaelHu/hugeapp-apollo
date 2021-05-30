@@ -8,7 +8,7 @@
     "license": "MIT",
     "scripts": {
         "build": "sh scripts/check-env.sh && webpack",
-        "dev": "sh scripts/check-env.sh && webpack-dev-server --config webpack.config.dev.js",
+        "dev": "sh scripts/check-env.sh && ./node_modules/.bin/webpack-dev-server --config webpack.config.dev.js",
         "reactopt": "sh scripts/check-env.sh && node node_modules/reactopt/main.js"
     },
     "devDependencies": {
