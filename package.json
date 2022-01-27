@@ -59,6 +59,6 @@
         "react-router-redux": "^4.0.8",
         "reactstrap": "^5.0.0-beta",
         "redux": "^3.7.2",
-        "three": "^0.91.0"
+        "three": "^0.137.0"
     }
 }
